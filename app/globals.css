@@ -4,6 +4,7 @@
  */
 
 @import "tailwindcss";
+@import "tw-animate-css";
 
 /* Map CSS variables → Tailwind v4 utility classes */
 @theme {

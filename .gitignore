@@ -36,6 +36,9 @@ yarn-error.log*
 # MCP config (contains PAT / secrets)
 .mcp.json
 
+# scratch Figma exports (not part of the codebase)
+figma_node.json
+
 # vercel
 .vercel
 
