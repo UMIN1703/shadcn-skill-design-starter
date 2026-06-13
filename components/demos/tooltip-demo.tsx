@@ -9,20 +9,14 @@ import {
 export function TooltipDemo() {
   return (
     <TooltipProvider>
-      <div className="flex gap-4">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="outline">Hover</Button>
-          </TooltipTrigger>
-          <TooltipContent>Add to library</TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="outline">Hover</Button>
-          </TooltipTrigger>
-          <TooltipContent>Add to library</TooltipContent>
-        </Tooltip>
-      </div>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outline" className="w-fit">
+            Hover
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>Add to library</TooltipContent>
+      </Tooltip>
     </TooltipProvider>
   );
 }

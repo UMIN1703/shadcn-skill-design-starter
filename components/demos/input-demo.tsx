@@ -4,65 +4,64 @@ import { Label } from "@/components/ui/label";
 
 export function InputDemo() {
   return (
-    <div className="flex w-full max-w-md flex-col gap-8">
-      <div className="flex flex-col gap-3">
-        <Input placeholder="Email" />
-        <Input placeholder="Email" autoFocus />
-        <Input placeholder="Email" disabled />
-        <Input placeholder="Email" className="bg-muted" />
-      </div>
-
-      <div className="grid w-full max-w-sm items-center gap-2">
-        <Label htmlFor="picture">Picture</Label>
-        <Input id="picture" type="file" />
-      </div>
-
-      <Input placeholder="Email" />
-
-      <div className="flex flex-col gap-4">
-        <div className="grid gap-2">
-          <Label htmlFor="email-a">Email</Label>
-          <Input id="email-a" placeholder="Email" />
+    <div className="flex w-full max-w-md flex-col gap-10">
+      <section className="flex flex-col gap-3">
+        <h3 className="font-mono text-sm font-medium text-muted-foreground">
+          Default
+        </h3>
+        <div className="flex flex-col gap-4">
+          <Input placeholder="Email" />
+          <Input placeholder="Email" disabled />
+          <Input defaultValue="Email" disabled />
         </div>
-        <div className="grid gap-2">
-          <Label htmlFor="email-b">Email</Label>
-          <Input id="email-b" placeholder="Email" autoFocus />
-        </div>
-      </div>
+      </section>
 
-      <div className="flex flex-col gap-3">
+      <section className="flex flex-col gap-3">
+        <h3 className="font-mono text-sm font-medium text-muted-foreground">
+          File
+        </h3>
+        <div className="grid w-full max-w-sm items-center gap-3">
+          <Label htmlFor="picture">Picture</Label>
+          <label
+            htmlFor="picture"
+            className="flex h-9 w-full cursor-pointer items-center rounded-md border border-border bg-background px-3 py-1 text-sm shadow-sm"
+          >
+            <span className="pr-1">
+              <span className="block px-1.5 py-px font-medium text-foreground">
+                Choose File
+              </span>
+            </span>
+            <span className="text-muted-foreground">No file chosen</span>
+            <input id="picture" type="file" className="sr-only" />
+          </label>
+        </div>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h3 className="font-mono text-sm font-medium text-muted-foreground">
+          With Button
+        </h3>
         <div className="flex items-center gap-2">
           <Input placeholder="Email" />
           <Button variant="outline">Subscribe</Button>
         </div>
-        <div className="flex items-center gap-2">
-          <Input placeholder="Email" />
-          <Button variant="outline">Subscribe</Button>
-        </div>
-      </div>
+      </section>
 
-      <form className="flex flex-col gap-6">
-        <div className="grid gap-2">
-          <Label htmlFor="username-a">Username</Label>
-          <Input id="username-a" defaultValue="shadcn" />
+      <section className="flex flex-col gap-3">
+        <h3 className="font-mono text-sm font-medium text-muted-foreground">
+          Form
+        </h3>
+        <form className="grid gap-2">
+          <Label htmlFor="username">Username</Label>
+          <Input id="username" defaultValue="shadcn" />
           <p className="text-sm text-muted-foreground">
             This is your public display name.
           </p>
-          <Button type="submit" className="w-fit">
+          <Button type="submit" className="mt-4 w-fit">
             Submit
           </Button>
-        </div>
-        <div className="grid gap-2">
-          <Label htmlFor="username-b">Username</Label>
-          <Input id="username-b" defaultValue="shadcn" />
-          <p className="text-sm text-muted-foreground">
-            This is your public display name.
-          </p>
-          <Button type="submit" className="w-fit">
-            Submit
-          </Button>
-        </div>
-      </form>
+        </form>
+      </section>
     </div>
   );
 }

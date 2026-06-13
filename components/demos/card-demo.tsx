@@ -26,12 +26,12 @@ export function CardDemo() {
         </CardAction>
       </CardHeader>
       <CardContent>
-        <form className="flex flex-col gap-6">
-          <div className="grid gap-2">
+        <form className="flex flex-col gap-4">
+          <div className="grid gap-3">
             <Label htmlFor="email">Email</Label>
             <Input id="email" type="email" placeholder="Email" />
           </div>
-          <div className="grid gap-2">
+          <div className="grid gap-3">
             <div className="flex items-center justify-between">
               <Label htmlFor="password">Password</Label>
               <a
