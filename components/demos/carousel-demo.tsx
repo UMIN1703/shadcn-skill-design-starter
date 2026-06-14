@@ -65,27 +65,29 @@ export function CarouselDemo() {
         <h3 className="font-mono text-sm font-medium text-muted-foreground">
           Vertical
         </h3>
-        <Carousel
-          orientation="vertical"
-          opts={{ align: "start" }}
-          className="w-full max-w-xs"
-        >
-          <CarouselContent className="-mt-1 h-[200px]">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <CarouselItem key={i} className="pt-1 md:basis-1/2">
-                <Card>
-                  <CardContent className="flex items-center justify-center p-6">
-                    <span className="font-mono text-3xl font-semibold">
-                      {i + 1}
-                    </span>
-                  </CardContent>
-                </Card>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+        <div className="py-14">
+          <Carousel
+            orientation="vertical"
+            opts={{ align: "start" }}
+            className="w-full max-w-xs"
+          >
+            <CarouselContent className="-mt-1 h-[200px]">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <CarouselItem key={i} className="pt-1 md:basis-1/2">
+                  <Card>
+                    <CardContent className="flex items-center justify-center p-6">
+                      <span className="font-mono text-3xl font-semibold">
+                        {i + 1}
+                      </span>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
       </section>
     </div>
   );

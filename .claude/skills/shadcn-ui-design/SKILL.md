@@ -56,13 +56,14 @@ python .claude/skills/shadcn-ui-design/scripts/sync-tokens.py \
 Run after every Figma export. Commit `variables-export.json` + `app/globals.css` together so the diff is reviewable.
 
 ### Project component inventory
-27 components built so far live in `components/ui/` and demoed under `components/demos/*-demo.tsx`. The docs site at `app/docs/components/[name]/page.tsx` consumes the demos. Each demo wraps its variants in sectioned `<h3 class="font-mono text-sm font-medium text-muted-foreground">` blocks — keep this pattern for new components.
+56 components built so far live in `components/ui/` and demoed under `components/demos/*-demo.tsx`. The docs site at `app/docs/components/[name]/page.tsx` consumes the demos. Each demo wraps its variants in sectioned `<h3 class="font-mono text-sm font-medium text-muted-foreground">` blocks — keep this pattern for new components.
 
 ### Non-negotiable project rules
 - Never use raw hex in component code. Always semantic tokens (`bg-background`, `text-foreground`, `border-border`, …).
 - Never use Tailwind primitive palette classes (`bg-blue-500`, `text-gray-500`). Exception: success/warning state pairs require both light **and** dark variants together (`text-green-700 dark:text-green-400`).
 - Pair every surface with its foreground (`bg-card text-card-foreground`, `bg-primary text-primary-foreground`). Never mix unrelated surface/foreground.
 - Every `bg-*` interactive element gets its `*-foreground` for text.
+- **Destructive exception:** the destructive surface has no paired `--destructive-foreground` token in Figma — its text is `white/12` (the Figma alias for white at 95% alpha). In code use `text-white/95` on `bg-destructive` surfaces (filled `Button`/`Badge`/`AlertDialogAction`). Outline/ghost destructive variants still use `text-destructive` (red text on default bg, as in `Alert variant="destructive"`, form errors).
 - Every form field gets a `<Label>`. No placeholder-only inputs.
 - Every destructive action goes through `<AlertDialog>`. No silent delete.
 - Every icon-only button gets `aria-label`.

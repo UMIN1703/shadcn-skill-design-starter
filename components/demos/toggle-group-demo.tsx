@@ -13,9 +13,13 @@ export function ToggleGroupDemo() {
     <div className="flex flex-col gap-10">
       <section className="flex flex-col gap-3">
         <h3 className="font-mono text-sm font-medium text-muted-foreground">
-          Multiple
+          Default
         </h3>
-        <ToggleGroup type="multiple" className="justify-start">
+        <ToggleGroup
+          type="multiple"
+          defaultValue={["bold"]}
+          className="justify-start"
+        >
           <ToggleGroupItem value="bold" aria-label="Bold">
             <Bold />
           </ToggleGroupItem>
@@ -30,7 +34,95 @@ export function ToggleGroupDemo() {
 
       <section className="flex flex-col gap-3">
         <h3 className="font-mono text-sm font-medium text-muted-foreground">
-          Single
+          Small
+        </h3>
+        <ToggleGroup
+          type="multiple"
+          size="sm"
+          defaultValue={["bold"]}
+          className="justify-start"
+        >
+          <ToggleGroupItem value="bold" aria-label="Bold">
+            <Bold />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="italic" aria-label="Italic">
+            <Italic />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="underline" aria-label="Underline">
+            <Underline />
+          </ToggleGroupItem>
+        </ToggleGroup>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h3 className="font-mono text-sm font-medium text-muted-foreground">
+          Outline
+        </h3>
+        <ToggleGroup
+          type="multiple"
+          variant="outline"
+          defaultValue={["bold"]}
+          className="justify-start"
+        >
+          <ToggleGroupItem value="bold" aria-label="Bold">
+            <Bold />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="italic" aria-label="Italic">
+            <Italic />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="underline" aria-label="Underline">
+            <Underline />
+          </ToggleGroupItem>
+        </ToggleGroup>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h3 className="font-mono text-sm font-medium text-muted-foreground">
+          Outline Small
+        </h3>
+        <ToggleGroup
+          type="multiple"
+          variant="outline"
+          size="sm"
+          defaultValue={["bold"]}
+          className="justify-start"
+        >
+          <ToggleGroupItem value="bold" aria-label="Bold">
+            <Bold />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="italic" aria-label="Italic">
+            <Italic />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="underline" aria-label="Underline">
+            <Underline />
+          </ToggleGroupItem>
+        </ToggleGroup>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h3 className="font-mono text-sm font-medium text-muted-foreground">
+          With Spacing
+        </h3>
+        <ToggleGroup
+          type="multiple"
+          defaultValue={["bold"]}
+          className="justify-start gap-2"
+        >
+          <ToggleGroupItem value="bold" aria-label="Bold">
+            <Bold />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="italic" aria-label="Italic">
+            <Italic />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="underline" aria-label="Underline">
+            <Underline />
+          </ToggleGroupItem>
+        </ToggleGroup>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h3 className="font-mono text-sm font-medium text-muted-foreground">
+          Single Selection
         </h3>
         <ToggleGroup
           type="single"
@@ -51,11 +143,11 @@ export function ToggleGroupDemo() {
 
       <section className="flex flex-col gap-3">
         <h3 className="font-mono text-sm font-medium text-muted-foreground">
-          Outline
+          Disabled
         </h3>
         <ToggleGroup
           type="multiple"
-          variant="outline"
+          disabled
           className="justify-start"
         >
           <ToggleGroupItem value="bold" aria-label="Bold">

@@ -60,7 +60,7 @@ export function AlertDialogDemo() {
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction className="bg-destructive text-white hover:bg-destructive/90">
+              <AlertDialogAction className="bg-destructive text-white/95 hover:bg-destructive/90">
                 Delete
               </AlertDialogAction>
             </AlertDialogFooter>

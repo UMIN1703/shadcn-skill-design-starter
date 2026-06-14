@@ -13,7 +13,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export function TabsDemo() {
   return (
-    <Tabs defaultValue="account" className="w-full max-w-md">
+    <div className="flex flex-col gap-10">
+      <section className="flex flex-col gap-3">
+        <h3 className="font-mono text-sm font-medium text-muted-foreground">
+          Account / Password
+        </h3>
+        <Tabs defaultValue="account" className="w-full max-w-md">
       <TabsList>
         <TabsTrigger value="account">Account</TabsTrigger>
         <TabsTrigger value="password">Password</TabsTrigger>
@@ -64,6 +69,8 @@ export function TabsDemo() {
           </CardFooter>
         </Card>
       </TabsContent>
-    </Tabs>
+        </Tabs>
+      </section>
+    </div>
   );
 }

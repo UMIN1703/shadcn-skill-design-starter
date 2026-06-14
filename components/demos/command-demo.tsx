@@ -26,7 +26,16 @@ export function CommandDemo() {
           Default
         </h3>
         <Command className="rounded-lg border border-border">
-          <CommandInput placeholder="Type a command or search…" />
+          <CommandInput placeholder="Type a command or search..." />
+        </Command>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h3 className="font-mono text-sm font-medium text-muted-foreground">
+          Active
+        </h3>
+        <Command className="rounded-lg border border-border">
+          <CommandInput placeholder="Type a command or search..." />
           <CommandList>
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup heading="Suggestions">

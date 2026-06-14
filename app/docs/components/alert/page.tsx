@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AlertDemo } from "@/components/alert-demo";
+import { AlertDemo } from "@/components/demos/alert-demo";
 import { ComponentPreview } from "@/components/component-preview";
 
 export const metadata: Metadata = {

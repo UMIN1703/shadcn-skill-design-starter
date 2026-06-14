@@ -11,6 +11,7 @@ const itemVariants = cva(
         default: "hover:bg-accent hover:text-accent-foreground",
         ghost: "",
         outline: "border border-border",
+        muted: "bg-muted",
       },
       size: {
         default: "px-3 py-2",
@@ -42,6 +43,21 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
 );
 Item.displayName = "Item";
 
+const ItemGroup = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "flex flex-col overflow-hidden rounded-md border border-border [&>*]:rounded-none [&>*+*]:border-t [&>*+*]:border-border",
+      className,
+    )}
+    {...props}
+  />
+));
+ItemGroup.displayName = "ItemGroup";
+
 const ItemIcon = React.forwardRef<
   HTMLSpanElement,
   React.HTMLAttributes<HTMLSpanElement>
@@ -56,6 +72,21 @@ const ItemIcon = React.forwardRef<
   />
 ));
 ItemIcon.displayName = "ItemIcon";
+
+const ItemMedia = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-md bg-muted",
+      className,
+    )}
+    {...props}
+  />
+));
+ItemMedia.displayName = "ItemMedia";
 
 const ItemContent = React.forwardRef<
   HTMLDivElement,
@@ -107,7 +138,9 @@ ItemAction.displayName = "ItemAction";
 
 export {
   Item,
+  ItemGroup,
   ItemIcon,
+  ItemMedia,
   ItemContent,
   ItemTitle,
   ItemDescription,
