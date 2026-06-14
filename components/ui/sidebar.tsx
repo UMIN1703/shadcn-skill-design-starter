@@ -39,15 +39,19 @@ function useSidebar() {
 }
 
 function useMatchMedia(query: string) {
-  const [matches, setMatches] = React.useState(false);
-  React.useEffect(() => {
-    const m = window.matchMedia(query);
-    setMatches(m.matches);
-    const onChange = (e: MediaQueryListEvent) => setMatches(e.matches);
-    m.addEventListener("change", onChange);
-    return () => m.removeEventListener("change", onChange);
-  }, [query]);
-  return matches;
+  const subscribe = React.useCallback(
+    (callback: () => void) => {
+      const m = window.matchMedia(query);
+      m.addEventListener("change", callback);
+      return () => m.removeEventListener("change", callback);
+    },
+    [query],
+  );
+  return React.useSyncExternalStore(
+    subscribe,
+    () => window.matchMedia(query).matches,
+    () => false,
+  );
 }
 
 const SidebarProvider = React.forwardRef<

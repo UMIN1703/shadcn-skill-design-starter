@@ -89,6 +89,9 @@ const Carousel = React.forwardRef<
 
     React.useEffect(() => {
       if (!api) return;
+      // Sync initial canScroll state from embla on mount — embla is an external
+      // imperative library, so this isn't a cascading-render risk.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       onSelect(api);
       api.on("reInit", onSelect);
       api.on("select", onSelect);
