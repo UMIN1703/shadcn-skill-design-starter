@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp } from "lucide-react";
 import { DayPicker } from "react-day-picker";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -21,8 +21,16 @@ function Calendar({
       classNames={{
         months: "flex flex-col sm:flex-row gap-4",
         month: "flex flex-col gap-4",
-        month_caption: "flex justify-center pt-1 relative items-center h-7",
-        caption_label: "text-sm font-medium",
+        month_caption:
+          "flex justify-center pt-1 relative items-center h-7",
+        caption_label:
+          "inline-flex items-center gap-1 select-none text-sm font-medium leading-none [&>svg]:size-3.5 [&>svg]:text-muted-foreground",
+        dropdowns:
+          "flex items-center justify-center gap-1.5 text-sm font-medium",
+        dropdown_root:
+          "relative inline-flex h-7 items-center rounded-md border border-border bg-background pl-2 pr-1 shadow-sm focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50",
+        dropdown:
+          "absolute inset-0 w-full cursor-pointer appearance-none bg-transparent opacity-0",
         nav: "flex items-center justify-between absolute inset-x-1 top-1",
         button_previous: cn(
           buttonVariants({ variant: "outline" }),
@@ -55,12 +63,15 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        Chevron: ({ orientation, ...rest }) =>
-          orientation === "left" ? (
-            <ChevronLeft className="h-4 w-4" {...rest} />
-          ) : (
-            <ChevronRight className="h-4 w-4" {...rest} />
-          ),
+        Chevron: ({ orientation, ...rest }) => {
+          if (orientation === "left")
+            return <ChevronLeft className="h-4 w-4" {...rest} />;
+          if (orientation === "right")
+            return <ChevronRight className="h-4 w-4" {...rest} />;
+          if (orientation === "up")
+            return <ChevronUp className="h-4 w-4" {...rest} />;
+          return <ChevronDown className="h-4 w-4" {...rest} />;
+        },
       }}
       {...props}
     />

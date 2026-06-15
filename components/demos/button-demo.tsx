@@ -20,10 +20,24 @@ export function ButtonDemo() {
 
       <section className="flex flex-col gap-3">
         <h3 className="font-mono text-sm font-medium text-muted-foreground">
+          Sizes
+        </h3>
+        <div className="flex flex-wrap items-center gap-3">
+          <Button size="sm">Small</Button>
+          <Button size="default">Default</Button>
+          <Button size="lg">Large</Button>
+          <Button size="icon" aria-label="Next">
+            <ChevronRight />
+          </Button>
+        </div>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h3 className="font-mono text-sm font-medium text-muted-foreground">
           With Icon
         </h3>
         <div className="flex flex-wrap items-center gap-3">
-          <Button size="icon" variant="outline">
+          <Button size="icon" variant="outline" aria-label="Next">
             <ChevronRight />
           </Button>
           <Button variant="outline">

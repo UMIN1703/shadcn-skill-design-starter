@@ -13,6 +13,8 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export function DrawerDemo() {
   const [goal, setGoal] = React.useState(350);
@@ -75,6 +77,46 @@ export function DrawerDemo() {
                 <Button>Submit</Button>
                 <DrawerClose asChild>
                   <Button variant="outline">Cancel</Button>
+                </DrawerClose>
+              </DrawerFooter>
+            </div>
+          </DrawerContent>
+        </Drawer>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h3 className="font-mono text-sm font-medium text-muted-foreground">
+          Edit Profile
+        </h3>
+        <Drawer>
+          <DrawerTrigger asChild>
+            <Button variant="outline" className="w-fit">
+              Edit Profile
+            </Button>
+          </DrawerTrigger>
+          <DrawerContent>
+            <div className="mx-auto w-full max-w-sm">
+              <DrawerHeader>
+                <DrawerTitle>Edit profile</DrawerTitle>
+                <DrawerDescription>
+                  Make changes to your profile here. Click save when you&apos;re
+                  done.
+                </DrawerDescription>
+              </DrawerHeader>
+              <div className="flex flex-col gap-4 p-4">
+                <div className="grid gap-2">
+                  <Label htmlFor="drawer-name">Name</Label>
+                  <Input id="drawer-name" defaultValue="Pedro Duarte" />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="drawer-username">Username</Label>
+                  <Input id="drawer-username" defaultValue="@peduarte" />
+                </div>
+              </div>
+              <DrawerFooter>
+                <Button>Save changes</Button>
+                <DrawerClose asChild>
+                  <Button variant="outline">Close</Button>
                 </DrawerClose>
               </DrawerFooter>
             </div>

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { Box, Layers, Settings } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -95,6 +96,103 @@ export function NavigationMenuDemo() {
                 className={navigationMenuTriggerStyle()}
               >
                 Docs
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h3 className="font-mono text-sm font-medium text-muted-foreground">
+          List
+        </h3>
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[260px] gap-1 p-2">
+                  <ListItem href="/docs" title="Documentation">
+                    Learn how to integrate with our platform.
+                  </ListItem>
+                  <ListItem href="/docs" title="Guides">
+                    Step-by-step walkthroughs and tutorials.
+                  </ListItem>
+                  <ListItem href="/docs" title="Changelog">
+                    Track every release and upcoming change.
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h3 className="font-mono text-sm font-medium text-muted-foreground">
+          Simple
+        </h3>
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                href="/"
+                className={navigationMenuTriggerStyle()}
+              >
+                Home
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                href="/pricing"
+                className={navigationMenuTriggerStyle()}
+              >
+                Pricing
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                href="/about"
+                className={navigationMenuTriggerStyle()}
+              >
+                About
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h3 className="font-mono text-sm font-medium text-muted-foreground">
+          With Icon
+        </h3>
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                href="/dashboard"
+                className={navigationMenuTriggerStyle()}
+              >
+                <Layers className="mr-2 size-4" />
+                Dashboard
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                href="/projects"
+                className={navigationMenuTriggerStyle()}
+              >
+                <Box className="mr-2 size-4" />
+                Projects
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                href="/settings"
+                className={navigationMenuTriggerStyle()}
+              >
+                <Settings className="mr-2 size-4" />
+                Settings
               </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>

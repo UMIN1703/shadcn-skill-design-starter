@@ -1,3 +1,4 @@
+import { Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -44,6 +45,27 @@ export function TextareaDemo() {
             Submit
           </Button>
         </form>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h3 className="font-mono text-sm font-medium text-muted-foreground">
+          With Action
+        </h3>
+        <div className="relative">
+          <Textarea
+            placeholder="Type a message..."
+            className="resize-none pr-14"
+            rows={3}
+          />
+          <Button
+            type="button"
+            size="icon"
+            className="absolute bottom-2 right-2 size-8"
+            aria-label="Send message"
+          >
+            <Send className="size-4" />
+          </Button>
+        </div>
       </section>
     </div>
   );

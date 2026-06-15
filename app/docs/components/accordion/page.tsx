@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import { AccordionDemo } from "@/components/demos/accordion-demo";
 import { ComponentPreview } from "@/components/component-preview";
-import { Faq } from "@/components/faq";
 
 export const metadata: Metadata = {
   title: "Accordion",
@@ -69,9 +69,7 @@ export default async function AccordionDocPage() {
           Preview
         </h2>
         <ComponentPreview code={usageCode}>
-          <div className="w-full max-w-[543px] rounded-xl border border-border bg-background p-5">
-            <Faq />
-          </div>
+          <AccordionDemo />
         </ComponentPreview>
       </section>
 
