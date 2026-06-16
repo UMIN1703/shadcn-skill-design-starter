@@ -8,8 +8,8 @@ export function SkeletonDemo() {
           Default
         </h3>
         <div className="flex flex-col gap-2">
-          <Skeleton className="h-4 w-[250px] rounded-full" />
-          <Skeleton className="h-4 w-[200px] rounded-full" />
+          <Skeleton className="h-4 w-[250px]" />
+          <Skeleton className="h-4 w-[200px]" />
         </div>
       </section>
 
@@ -20,8 +20,8 @@ export function SkeletonDemo() {
         <div className="flex flex-col gap-3">
           <Skeleton className="h-32 w-full rounded-lg" />
           <div className="flex flex-col gap-2">
-            <Skeleton className="h-4 w-[250px] rounded-full" />
-            <Skeleton className="h-4 w-[200px] rounded-full" />
+            <Skeleton className="h-4 w-[250px]" />
+            <Skeleton className="h-4 w-[200px]" />
           </div>
         </div>
       </section>
@@ -33,8 +33,8 @@ export function SkeletonDemo() {
         <div className="flex items-center gap-4">
           <Skeleton className="h-12 w-12 rounded-full" />
           <div className="flex flex-col gap-2">
-            <Skeleton className="h-4 w-[250px] rounded-full" />
-            <Skeleton className="h-4 w-[200px] rounded-full" />
+            <Skeleton className="h-4 w-[250px]" />
+            <Skeleton className="h-4 w-[200px]" />
           </div>
         </div>
       </section>

@@ -49,6 +49,25 @@ export function InputDemo() {
 
       <section className="flex flex-col gap-3">
         <h3 className="font-mono text-sm font-medium text-muted-foreground">
+          Invalid
+        </h3>
+        <div className="grid gap-2">
+          <Label htmlFor="invalid-email">Email</Label>
+          <Input
+            id="invalid-email"
+            type="email"
+            defaultValue="not-an-email"
+            aria-invalid
+            aria-describedby="invalid-email-msg"
+          />
+          <p id="invalid-email-msg" className="text-sm text-destructive">
+            Please enter a valid email address.
+          </p>
+        </div>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h3 className="font-mono text-sm font-medium text-muted-foreground">
           Form
         </h3>
         <form className="grid gap-2">

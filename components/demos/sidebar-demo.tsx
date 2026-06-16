@@ -173,32 +173,6 @@ function FullSidebar() {
   );
 }
 
-function ClosedSidebar() {
-  // Matches Figma 616:3398 — icon-only column with brand logo, 4 platform icons, avatar at bottom
-  const icons = [SquareTerminal, Bot, BookOpen, Settings2];
-  return (
-    <div className="flex h-full w-12 flex-col items-center justify-between rounded-lg bg-sidebar p-2 text-sidebar-foreground">
-      <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-        <GalleryVerticalEnd className="size-4" />
-      </div>
-      <div className="flex flex-1 flex-col items-center gap-1 py-2">
-        {icons.map((Icon, i) => (
-          <button
-            key={i}
-            className="flex size-8 items-center justify-center rounded-md hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-          >
-            <Icon className="size-4" />
-          </button>
-        ))}
-      </div>
-      <Avatar className="size-8 rounded-lg">
-        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-        <AvatarFallback className="rounded-lg">SC</AvatarFallback>
-      </Avatar>
-    </div>
-  );
-}
-
 export function SidebarDemo() {
   return (
     <div className="flex flex-col gap-10">
@@ -206,8 +180,10 @@ export function SidebarDemo() {
         <h3 className="font-mono text-sm font-medium text-muted-foreground">
           State=Closed
         </h3>
-        <div className="h-[608px] w-fit overflow-hidden rounded-lg border border-border bg-background p-2">
-          <ClosedSidebar />
+        <div className="h-[608px] w-fit overflow-hidden rounded-lg border border-border">
+          <SidebarProvider defaultOpen={false}>
+            <FullSidebar />
+          </SidebarProvider>
         </div>
       </section>
 

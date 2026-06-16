@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -120,6 +121,51 @@ function BioForm() {
   );
 }
 
+function InvalidExample() {
+  const form = useForm<z.infer<typeof profileSchema>>({
+    resolver: zodResolver(profileSchema),
+    defaultValues: { username: "a", email: "invalid" },
+    mode: "onChange",
+  });
+
+  React.useEffect(() => {
+    form.trigger();
+  }, [form]);
+
+  return (
+    <Form {...form}>
+      <form className="flex flex-col gap-4">
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input placeholder="shadcn" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input placeholder="you@example.com" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </form>
+    </Form>
+  );
+}
+
 export function FormDemo() {
   return (
     <div className="flex w-full max-w-md flex-col gap-10">
@@ -135,6 +181,13 @@ export function FormDemo() {
           Bio
         </h3>
         <BioForm />
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h3 className="font-mono text-sm font-medium text-muted-foreground">
+          Invalid State
+        </h3>
+        <InvalidExample />
       </section>
     </div>
   );

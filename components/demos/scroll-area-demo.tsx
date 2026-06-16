@@ -23,10 +23,10 @@ export function ScrollAreaDemo() {
         <ScrollArea className="h-72 w-48 rounded-md border border-border">
           <div className="flex flex-col p-4">
             <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4>
-            {tags.map((tag) => (
+            {tags.map((tag, i) => (
               <div key={tag} className="flex flex-col">
                 <div className="py-2 text-sm">{tag}</div>
-                <Separator />
+                {i < tags.length - 1 ? <Separator /> : null}
               </div>
             ))}
           </div>
