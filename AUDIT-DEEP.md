@@ -38,3 +38,47 @@ Items 8–10 are speculative based on canonical shadcn variants. Without Figma M
 
 - `npm run build` — ✅ Compiled successfully in 24.1s, 68/68 routes static
 - `npm run lint` — 0 errors, 9 pre-existing warnings (5 storybook redundant-name + 3 kit script issues + 1 data-table react-hooks/incompatible-library)
+
+---
+
+# Visual 4-theme sweep — 56 components × 4 themes
+
+Captured via Playwright CLI against the running dev server. Each component's `/docs/components/{name}` page rendered under Light, Dark, Primary (blue), Secondary (yellow/brown) by toggling `class="dark"` / `data-theme="primary"` / `data-theme="secondary"` on `<html>`. 224 full-page PNGs saved to `/tmp/theme-check/`.
+
+**Result**: 224/224 rendered cleanly, 0 navigation failures, 0 blank PNGs, 0 console crashes.
+
+## Render health
+
+| Theme | Render OK | File size range |
+|---|---|---|
+| Light | 56/56 | 61–200 KB |
+| Dark | 56/56 | 61–200 KB |
+| Primary | 56/56 | 90–220 KB |
+| Secondary | 56/56 | 88–217 KB |
+
+Only one size outlier worth noting: **aspect-ratio** primary/secondary PNGs are 75% larger than light/dark — caused by the gradient placeholders, not a render issue.
+
+## ⚠️ Secondary-theme contrast observations
+
+All components use correct semantic tokens — no component-level bugs found. However, the secondary theme palette (`#globals.css` `[data-theme="secondary"]` block, brown/yellow) has low-contrast pairs that affect specific component variants:
+
+| Component | Variant | Issue |
+|---|---|---|
+| `button` | `ghost` | Foreground ≈ background luminance — button nearly invisible |
+| `button` | `outline` | Border close to bg-background — borderline visible |
+| `alert` (destructive), `form` (FormMessage), `input` (invalid helper) | destructive text | Red text on brown bg — readability marginal |
+
+These are **palette issues, not component issues**. Per CLAUDE.md §3 ("Figma is the source; never edit `app/globals.css` by hand"), fixing them requires:
+1. Designer adjusts secondary theme tokens in Figma (raise `--accent` lightness, raise `--destructive` lightness for secondary mode, or darken `--background`)
+2. Re-export `variables-export.json`
+3. Re-run `sync-tokens.py`
+
+Components render correctly given the current token values — they aren't doing anything wrong. Flag for the designer.
+
+## Sweep mechanics
+
+- Tool: `playwright-cli` (globally installed `@playwright/cli`)
+- Loop: `bash /tmp/theme-check/run.sh` (kept for re-runs)
+- Time: ~12 min for 224 navigations + screenshots
+- Artifacts: `/tmp/theme-check/{component}-{theme}.png` × 224
+- Dev server: port 3004 (existing instance)
