@@ -1,0 +1,156 @@
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, userEvent, within } from "storybook/test";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+const meta: Meta<typeof Select> = {
+  title: "UI/Select",
+  component: Select,
+  tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+  },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof Select>;
+
+export const Default: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-4">
+      <Select>
+        <SelectTrigger className="w-48">
+          <SelectValue placeholder="Select a fruit" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Fruits</SelectLabel>
+            <SelectItem value="apple">Apple</SelectItem>
+            <SelectItem value="banana">Banana</SelectItem>
+            <SelectItem value="blueberry">Blueberry</SelectItem>
+            <SelectItem value="grapes">Grapes</SelectItem>
+            <SelectItem value="pineapple">Pineapple</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+
+      <Select defaultValue="apple">
+        <SelectTrigger className="w-48">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Fruits</SelectLabel>
+            <SelectItem value="apple">Apple</SelectItem>
+            <SelectItem value="banana">Banana</SelectItem>
+            <SelectItem value="blueberry">Blueberry</SelectItem>
+            <SelectItem value="grapes">Grapes</SelectItem>
+            <SelectItem value="pineapple">Pineapple</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const triggers = canvas.getAllByRole("combobox");
+    await userEvent.click(triggers[0]);
+    const item = await within(document.body).findByText(/banana/i);
+    await expect(item).toBeVisible();
+  },
+};
+
+export const Grouped: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-4">
+      <Select>
+        <SelectTrigger className="w-64">
+          <SelectValue placeholder="Select a timezone" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>North America</SelectLabel>
+            <SelectItem value="est">Eastern Standard Time (EST)</SelectItem>
+            <SelectItem value="cst">Central Standard Time (CST)</SelectItem>
+            <SelectItem value="mst">Mountain Standard Time (MST)</SelectItem>
+            <SelectItem value="pst">Pacific Standard Time (PST)</SelectItem>
+            <SelectItem value="akst">Alaska Standard Time (AKST)</SelectItem>
+            <SelectItem value="hst">Hawaii Standard Time (HST)</SelectItem>
+          </SelectGroup>
+          <SelectGroup>
+            <SelectLabel>Europe &amp; Africa</SelectLabel>
+            <SelectItem value="gmt">Greenwich Mean Time (GMT)</SelectItem>
+            <SelectItem value="cet">Central European Time (CET)</SelectItem>
+            <SelectItem value="eet">Eastern European Time (EET)</SelectItem>
+            <SelectItem value="west">
+              Western European Summer Time (WEST)
+            </SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+
+      <Select defaultValue="est">
+        <SelectTrigger className="w-64">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>North America</SelectLabel>
+            <SelectItem value="est">Eastern Standard Time (EST)</SelectItem>
+            <SelectItem value="cst">Central Standard Time (CST)</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const triggers = canvas.getAllByRole("combobox");
+    await userEvent.click(triggers[0]);
+    const item = await within(document.body).findByText(/north america/i);
+    await expect(item).toBeVisible();
+  },
+};
+
+export const Form: Story = {
+  render: () => (
+    <form className="flex w-80 flex-col gap-4">
+      <div className="grid gap-2">
+        <Label htmlFor="email-select-a">Username</Label>
+        <Select>
+          <SelectTrigger id="email-select-a">
+            <SelectValue placeholder="Select a verified email to display" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="a">m@example.com</SelectItem>
+            <SelectItem value="b">m@google.com</SelectItem>
+            <SelectItem value="c">m@support.com</SelectItem>
+          </SelectContent>
+        </Select>
+        <p className="text-sm text-muted-foreground">
+          You can manage email addresses in your email settings.
+        </p>
+      </div>
+      <Button type="submit" className="w-fit">
+        Submit
+      </Button>
+    </form>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole("combobox");
+    await userEvent.click(trigger);
+    const item = await within(document.body).findByText(/m@example.com/i);
+    await expect(item).toBeVisible();
+  },
+};
