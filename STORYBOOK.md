@@ -17,7 +17,7 @@ npm run build-storybook      # ./storybook-static
 |---|---|
 | `.storybook/main.ts` | Framework config (Next.js) + addons (a11y, docs, chromatic) |
 | `.storybook/preview.tsx` | Global styles, fonts, 4-theme switcher decorator |
-| `components/stories/*.stories.tsx` | Story files (10 exemplars to start) |
+| `components/stories/*.stories.tsx` | Story files (56 — full primitive coverage) |
 
 The theme switcher in the toolbar swaps `<html>` between:
 - **Light** — default `:root`
@@ -35,7 +35,7 @@ Every story renders inside `bg-background text-foreground` so changing the theme
 
 ```tsx
 // components/stories/MyThing.stories.tsx
-import type { Meta, StoryObj } from "@storybook/nextjs";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { MyThing } from "@/components/ui/my-thing";
 
 const meta: Meta<typeof MyThing> = {
@@ -55,13 +55,13 @@ Tips:
 - For multi-component compositions (Card, Dialog, Form) use `render: () => …` instead of `component`.
 - For client-only behavior (toast, dialog, drawer) include a top-level `"use client"` is NOT needed in story files — Storybook treats them as client.
 
-### Adding more stories
+### Adding a new story
 
-The 10 exemplar stories live in `components/stories/`. To cover the remaining 34 components, copy the pattern from a similar primitive:
+All 56 shadcn primitives in `components/ui/` already have a story in `components/stories/`. When you add a new primitive, drop its story next to the existing ones — copy the pattern from a similar one:
 
 | Pattern | Reuse |
 |---|---|
-| Plain styled element (Badge, Separator, Spinner, Skeleton) | copy `Skeleton.stories.tsx` |
+| Plain styled element (Badge, Separator, Spinner, Skeleton, Kbd) | copy `Skeleton.stories.tsx` |
 | Form control (Input, Textarea, Slider, Checkbox, Switch, Radio Group) | copy `Input.stories.tsx` |
 | Overlay (Dialog, Drawer, Sheet, AlertDialog, Popover, Tooltip, HoverCard) | copy `Dialog.stories.tsx` |
 | Composite (Card, Table, Tabs, Form, DataTable) | copy `Card.stories.tsx` |
@@ -118,6 +118,10 @@ Wire into CI for PR gates.
 
 ## What's covered today
 
-10 stories — Button, Input, Card, Dialog, Form, Table, Toast, Skeleton, Drawer, Calendar. 7 of those carry a play function (Card / Calendar / Skeleton are visual-only).
+**56 stories — full coverage of every shadcn primitive in `components/ui/`:**
 
-To extend coverage: follow the patterns above and add `*.stories.tsx` next to the existing ones. The Storybook server picks up new files on save — no config changes needed.
+Accordion, Alert, AlertDialog, AspectRatio, Avatar, Badge, Breadcrumb, Button, ButtonGroup, Calendar, Card, Carousel, Chart, Checkbox, Collapsible, Combobox, Command, ContextMenu, DataTable, DatePicker, Dialog, Drawer, DropdownMenu, Empty, Field, Form, HoverCard, Input, InputGroup, InputOTP, Item, Kbd, Label, Menubar, NativeSelect, NavigationMenu, Pagination, Popover, Progress, RadioGroup, ScrollArea, Select, Separator, Sheet, Sidebar, Skeleton, Slider, Spinner, Switch, Table, Tabs, Textarea, Toast, Toggle, ToggleGroup, Tooltip.
+
+32 of those carry at least one `play` function for interaction testing — purely visual primitives (Badge, Skeleton, Spinner, Calendar, Card, …) are visual-only.
+
+The Storybook server picks up new files on save — no config changes needed when you add a new primitive + story.
