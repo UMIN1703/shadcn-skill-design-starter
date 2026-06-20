@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { expect, userEvent, within } from "storybook/test";
+import { expect, userEvent, waitFor, within } from "storybook/test";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -79,7 +79,9 @@ export const DimensionsFormStory: Story = {
     const canvas = within(canvasElement);
     const trigger = canvas.getByRole("button", { name: /open popover/i });
     await userEvent.click(trigger);
-    const heading = await within(document.body).findByText(/dimensions/i);
-    await expect(heading).toBeVisible();
+    const heading = await within(document.body).findByRole("heading", {
+      name: /dimensions/i,
+    });
+    await waitFor(() => expect(heading).toBeVisible());
   },
 };

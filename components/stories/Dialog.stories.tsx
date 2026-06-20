@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { expect, userEvent, within } from "storybook/test";
+import { expect, userEvent, waitFor, within } from "storybook/test";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -62,6 +62,6 @@ export const OpenInteraction: Story = {
     const title = await within(document.body).findByRole("heading", {
       name: /edit profile/i,
     });
-    await expect(title).toBeVisible();
+    await waitFor(() => expect(title).toBeVisible());
   },
 };

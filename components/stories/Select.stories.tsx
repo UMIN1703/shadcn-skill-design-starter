@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { expect, userEvent, within } from "storybook/test";
+import { expect, userEvent, waitFor, within } from "storybook/test";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import {
@@ -65,8 +65,10 @@ export const Default: Story = {
     const canvas = within(canvasElement);
     const triggers = canvas.getAllByRole("combobox");
     await userEvent.click(triggers[0]);
-    const item = await within(document.body).findByText(/banana/i);
-    await expect(item).toBeVisible();
+    const item = await within(document.body).findByRole("option", {
+      name: /banana/i,
+    });
+    await waitFor(() => expect(item).toBeVisible());
   },
 };
 
@@ -118,7 +120,7 @@ export const Grouped: Story = {
     const triggers = canvas.getAllByRole("combobox");
     await userEvent.click(triggers[0]);
     const item = await within(document.body).findByText(/north america/i);
-    await expect(item).toBeVisible();
+    await waitFor(() => expect(item).toBeVisible());
   },
 };
 
@@ -150,7 +152,9 @@ export const Form: Story = {
     const canvas = within(canvasElement);
     const trigger = canvas.getByRole("combobox");
     await userEvent.click(trigger);
-    const item = await within(document.body).findByText(/m@example.com/i);
-    await expect(item).toBeVisible();
+    const item = await within(document.body).findByRole("option", {
+      name: /m@example\.com/i,
+    });
+    await waitFor(() => expect(item).toBeVisible());
   },
 };

@@ -28,7 +28,7 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-    a11y: { test: "todo" },
+    a11y: { test: "error" },
     backgrounds: { disable: true },
     layout: "centered",
   },

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import * as React from "react";
 import Link from "next/link";
-import { expect, userEvent, within } from "storybook/test";
+import { expect, userEvent, waitFor, within } from "storybook/test";
 import { Box, Layers, Settings } from "lucide-react";
 import {
   NavigationMenu,
@@ -140,7 +140,7 @@ export const Default: Story = {
     const trigger = canvas.getByRole("button", { name: /getting started/i });
     await userEvent.click(trigger);
     const link = await within(document.body).findByText(/introduction/i);
-    await expect(link).toBeVisible();
+    await waitFor(() => expect(link).toBeVisible());
   },
 };
 
@@ -171,8 +171,8 @@ export const List: Story = {
     const canvas = within(canvasElement);
     const trigger = canvas.getByRole("button", { name: /resources/i });
     await userEvent.click(trigger);
-    const link = await within(document.body).findByText(/documentation/i);
-    await expect(link).toBeVisible();
+    const link = await canvas.findByRole("link", { name: /^Documentation/ });
+    await waitFor(() => expect(link).toBeVisible());
   },
 };
 

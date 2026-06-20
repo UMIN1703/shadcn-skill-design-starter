@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import * as React from "react";
-import { expect, userEvent, within } from "storybook/test";
+import { expect, fireEvent, waitFor, within } from "storybook/test";
 import {
   ContextMenu,
   ContextMenuCheckboxItem,
@@ -91,8 +91,10 @@ export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const trigger = canvas.getByText(/right-click here/i);
-    await userEvent.pointer({ keys: "[MouseRight>]", target: trigger });
-    const item = await within(document.body).findByText(/back/i);
-    await expect(item).toBeVisible();
+    fireEvent.contextMenu(trigger);
+    const item = await within(document.body).findByRole("menuitem", {
+      name: /back/i,
+    });
+    await waitFor(() => expect(item).toBeVisible());
   },
 };

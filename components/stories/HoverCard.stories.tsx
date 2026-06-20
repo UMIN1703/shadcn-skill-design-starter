@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { expect, userEvent, within } from "storybook/test";
+import { expect, userEvent, waitFor, within } from "storybook/test";
 import { CalendarDays } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -61,6 +61,6 @@ export const Default: Story = {
     const content = await within(document.body).findByText(
       /The React Framework/i,
     );
-    await expect(content).toBeVisible();
+    await waitFor(() => expect(content).toBeVisible());
   },
 };

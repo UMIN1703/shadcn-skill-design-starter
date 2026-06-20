@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { expect, userEvent, within } from "storybook/test";
+import { expect, userEvent, waitFor, within } from "storybook/test";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
@@ -44,6 +44,6 @@ export const ShowOnClick: Story = {
     const toastEl = await within(document.body).findByText(
       /event has been created/i,
     );
-    await expect(toastEl).toBeVisible();
+    await waitFor(() => expect(toastEl).toBeVisible());
   },
 };
